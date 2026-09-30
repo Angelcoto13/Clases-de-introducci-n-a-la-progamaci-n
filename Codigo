@@ -1,0 +1,111 @@
+#include <stdio.h>
+ 
+    float areaCirculo(float radio){
+
+    float area = 3.1416 * (radio * radio);
+
+    return area;
+
+    }
+ 
+    float areaTriangulo(float base, float altura){
+
+    float area = base * altura / 2;
+
+    return area;
+
+    }
+
+    float areaRectangulo(float base, float altura){
+
+     float area = 2 * (base + altura);
+
+    return area;
+
+}
+ 
+ 
+int main()
+
+{
+
+  float base;
+
+  float altura;
+
+  float radio;
+
+  int menu = 1;
+
+  do{
+
+     printf ("Selecciona tu opcion \n");
+
+     printf ("1.- Calcular Area de Circulo \n");
+
+     printf ("2.- Calcular Area de Triangulo \n");
+
+     printf ("3.- Calcular Area de Rectangulo \n");
+
+     printf ("4.- Salir del menu \n");
+
+     scanf ("%d", &menu);
+
+     switch (menu){
+
+         case 1:
+
+         printf ("Ingresa el radio: ");
+
+         scanf ("%f", &radio);
+
+         printf ("El Area del Circulo es: %.2f \n", areaCirculo (radio));
+
+         break;
+
+          case 2:
+
+         printf ("Ingresa la base: ");
+
+         scanf ("%f", &base);
+
+          printf ("Ingresa la altura: ");
+
+         scanf ("%f", &altura);
+
+         printf ("El Area del Triangulo es: %.2f \n", areaTriangulo (base, altura));
+
+         break;
+
+          case 3:
+
+         printf ("Ingresa la base: ");
+
+         scanf ("%f", &base);
+
+           printf ("Ingresa la altura: ");
+
+         scanf ("%f", &altura);
+
+         printf ("El Area del Rectangulo es: %.2f \n", areaRectangulo (base, altura));
+
+         break;
+
+
+          default:
+
+         printf ("Opcion no valida \n");
+
+         break;
+
+
+     }
+
+  }
+
+while (menu != 4);
+ 
+    return 0;
+
+}
+ 
