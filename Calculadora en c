@@ -1,0 +1,78 @@
+#include <stdio.h>
+    int SumarNumeros (){
+        int a, b;
+        printf("dame el valor de a");
+        scanf("%d", &a);
+        printf("dame el valor de b");
+        scanf("%d", &b);
+        return a + b;
+    }
+    int RestarNumeros (){
+        int a, b;
+        printf("dame el valor de a");
+        scanf("%d", &a);
+        printf("dame el valor de b");
+        scanf("%d", &b);
+        return a - b;
+    }
+    int MultiplicarNumeros (){
+        int a, b;
+        printf("dame el valor de a");
+        scanf("%d", &a);
+        printf("dame el valor de b");
+        scanf("%d", &b);
+        return a * b;
+    }
+    int DivisionNumeros (){
+        int a, b;
+        printf("dame el valor de a");
+        scanf("%d", &a);
+        printf("dame el valor de b");
+        scanf("%d", &b);
+        return a / b;
+    }
+
+ 
+int main()
+{
+    float valor = 10;
+     int menu = 1;
+    do{
+    printf("Selecciona tu opcion \n");
+    printf("1.- Sumar \n");
+    printf("2.- Restar \n");
+    printf("3.- Multiplicar \n");
+     printf("4.- Dividir \n");
+    printf("5.- Salir del menu \n");
+    scanf ("%d", &menu);
+    switch (menu){
+        case 1:
+        valor = SumarNumeros();
+        printf("%f \n", valor);
+        break;
+        case 2:
+       valor = RestarNumeros();
+        printf("%f \n", valor);
+        break;
+        case 3:
+         valor = MultiplicarNumeros();
+        printf("%f \n", valor);
+        break;
+        case 4:
+        valor = DivisionNumeros();
+        printf("%f \n", valor);
+        break;
+        
+         case 5:
+        printf("saliendo del programa \n");
+        break;
+ 
+        default:
+        printf("opcion no valida \n");
+        break;
+    }
+    }while(menu != 5);
+ 
+ 
+    return 0;
+}
