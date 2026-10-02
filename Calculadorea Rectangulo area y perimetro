@@ -1,0 +1,56 @@
+#include <stdio.h>
+
+    float CalcularAreaRectangulo (float base, float altura){
+        float Area = base * altura;
+        return Area;
+}
+    float CalcularPerimetroRectangulo (float base, float altura){
+        float Perimetro = 2 * (base + altura);
+        return Perimetro;
+}
+
+    int main()
+{
+    float base;
+    float altura;
+    int menu = 1;
+    
+        do{
+            printf("Selecciona tu opcion \n");
+     printf("1.- calcular area \n");
+        printf("2.- calcular perimetro \n");
+        printf("3.- Salir del menu \n");
+        scanf("%d", &menu);
+        
+        switch (menu){
+        
+    case 1:
+   printf("ingresa la base: ");
+   scanf("%f", &base);
+   printf("ingresa la altura: ");
+   scanf("%f", &altura);
+   printf("El Area es: %.2f\n", CalcularAreaRectangulo(base, altura));
+   break;
+
+    case 2:
+     printf("ingresa la base: ");
+     scanf("%f", &base);
+     printf("ingresa la altura: ");
+     scanf("%f", &altura);
+      printf("El Perimetro es: %.2f\n", CalcularPerimetroRectangulo(base, altura));
+     
+   scanf ("%f", &altura);
+   break;
+   
+   case 3:
+     printf("saliendo del programa \n");
+   break;
+   
+   default:
+        printf("opcion no valida \n");
+        break;
+        }
+    }while (menu != 3);
+ 
+    return 0;
+}
