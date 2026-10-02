@@ -1,0 +1,85 @@
+#include <stdio.h>
+
+  int Jugadorataque (){
+        return 25;
+    }
+    
+    int JugadorvidaInicial (){
+        return 100;
+    }
+    
+    int Jugadordefensa (){
+        return 10;
+    }
+    
+    int Enemigoataque (){
+        return 20;
+    }
+    
+    int EnemigovidaInicial (){
+        return 120;
+    }
+    
+      int Enemigodefensa (){
+        return 8;
+    }
+
+int main()
+{
+    
+    int menu = 1;
+    int dano;
+    int curacion = 20;
+     int vidaActualJugador = JugadorvidaInicial(); 
+    int vidaActualEnemigo = EnemigovidaInicial();
+    
+    
+    do{
+        printf ("Vida del jugador: 100 \n");
+        printf ("Vida del enemigo: 120 \n");
+        printf ("Selecciona tu opcion: \n");
+        printf ("1.- Atacar \n");
+         printf ("2.- Curarse \n");
+          printf ("3.- Huir \n");
+          scanf("%d", &menu);
+          
+          switch (menu){
+              
+        case 1:
+         dano = Jugadorataque() - Enemigodefensa();
+        if (dano < 0) dano = 0; 
+        vidaActualEnemigo = vidaActualEnemigo - dano;
+
+        printf("Infligiste %d de daño.\n", dano);
+         printf("la vida actual de tu enemigo es: %d .\n", vidaActualEnemigo);
+        
+        break;
+          
+           case 2:
+                vidaActualJugador = vidaActualJugador + curacion;
+                if (vidaActualJugador + curacion > 100){
+                    printf ("No puedes superar los 100 puntos de vida mushashin \n");
+                }
+                else if (vidaActualJugador <= 80){
+                    printf("Te curaste %d puntos de vida \n", curacion);
+                }
+                break;
+                 case 3:
+                printf("Huiste del combate.\n");
+                break;
+                
+            default:
+                printf("Opcion no valida.\n");
+                break;
+        }
+    
+    } while (menu != 3 && vidaActualEnemigo > 0 && vidaActualJugador > 0);
+    if (vidaActualEnemigo <= 0) {
+        printf("Haz derrocado las fuerzas enemigas.\n");
+    } else if (vidaActualJugador <= 0) { 
+        printf("La obscuridad ha triunfado \n");
+    }
+    
+    
+    return 0;
+}
