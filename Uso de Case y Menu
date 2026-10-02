@@ -1,0 +1,39 @@
+#include <stdio.h>
+
+int main()
+{
+ int menu = 1;
+    do{
+    printf("Selecciona tu opcion \n");
+    printf("1.- Ejercicio 1 \n");
+    printf("2.- Ejercicio 2 \n");
+    printf("3.- Ejercicio 3 \n");
+    printf("4.- Salir del menu");
+    scanf ("%d", &menu);
+    switch (menu){
+        
+        case 1:
+        printf("promedio de calificaciones de N cantidad de materias \n");
+        break;
+        
+        case 2:
+        printf("uso del IF y else if \n");
+        break;
+        
+        case 3:
+        printf("teorema de pitagoras \n");
+        break;
+        
+        case 4:
+        printf("Saliste del menu \n");
+        break;
+
+        default:
+        printf("opcion no valida \n");
+        break;
+    }
+    
+    }while (menu != 4);
+
+    return 0;
+}
