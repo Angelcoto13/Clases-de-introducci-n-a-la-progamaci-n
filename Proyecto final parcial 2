@@ -1,0 +1,128 @@
+#include <stdio.h>
+#include <stdlib.h>
+ 
+    float areaCirculo(float radio){
+
+    float area = 3.1416 * (radio * radio);
+
+    return area;
+
+    }
+ 
+    float areaTriangulo(float base, float altura){
+
+    float area = base * altura / 2;
+
+    return area;
+
+    }
+
+    float areaRectangulo(float base, float altura){
+
+     float area = base * altura;
+
+    return area;
+
+}
+ 
+ 
+int main()
+
+{
+
+  float base;
+
+  float altura;
+
+  float radio;
+
+  int menu = 1;
+
+  do{
+      
+      system("clear");
+
+     printf ("Selecciona tu opcion \n");
+
+     printf ("1.- Calcular Area de Circulo \n");
+
+     printf ("2.- Calcular Area de Triangulo \n");
+
+     printf ("3.- Calcular Area de Rectangulo \n");
+
+     printf ("4.- Salir del menu \n");
+
+     scanf ("%d", &menu);
+
+     switch (menu){
+
+         case 1:
+
+         printf ("Ingresa el radio: ");
+
+         scanf ("%f", &radio);
+
+         printf ("El Area del Circulo es: %.2f \n", areaCirculo (radio));
+         
+         printf("Presiona ENTER para continuar \n");
+                getchar(); getchar(); 
+                break;
+
+         break;
+
+          case 2:
+
+         printf ("Ingresa la base: ");
+
+         scanf ("%f", &base);
+
+          printf ("Ingresa la altura: ");
+
+         scanf ("%f", &altura);
+
+         printf ("El Area del Triangulo es: %.2f \n", areaTriangulo (base, altura));
+         
+         printf("\nPresiona ENTER para continuar...");
+                getchar(); getchar(); 
+                break;
+
+         break;
+
+          case 3:
+
+         printf ("Ingresa la base: ");
+
+         scanf ("%f", &base);
+
+           printf ("Ingresa la altura: ");
+
+         scanf ("%f", &altura);
+
+         printf ("El Area del Rectangulo es: %.2f \n", areaRectangulo (base, altura));
+         
+         printf("\nPresiona ENTER para continuar...");
+                getchar(); getchar(); 
+                break;
+
+         case 4:
+                printf("Saliendo del menu \n");
+                break;
+
+
+          default:
+
+         printf ("Opcion no valida \n");
+
+         break;
+
+
+     }
+
+  }
+
+while (menu != 4);
+ 
+    return 0;
+
+}
+ 
