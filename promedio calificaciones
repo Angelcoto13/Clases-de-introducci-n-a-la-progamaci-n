@@ -1,0 +1,43 @@
+#include <stdio.h>
+ 
+int main()
+{
+char inicial;
+    float parcial1, parcial2, parcial3, parcial4, parcial5;
+    float promedio;
+
+printf("Dame tu parcial 1 \n");
+scanf ("%f", &parcial1);
+printf("Dame tu parcial 2 \n");
+scanf ("%f", &parcial2);
+printf("Dame tu parcial 3 \n");
+scanf ("%f", &parcial3);
+ 
+printf("Dame tu parcial 4 \n");
+scanf ("%f", &parcial4);
+ 
+printf("Dame tu parcial 5 \n");
+scanf ("%f", &parcial5);
+ 
+promedio = (parcial1 + parcial2 + parcial3 + parcial4 + parcial5) / 5;
+printf("Tu  promedio final de: %.2f", promedio);
+ 
+int numero = promedio;
+int otronumero = 7.0;
+ 
+        if (promedio >= 7.0){
+        printf ("el promedio es aprobatorio");
+         }
+         else{
+         printf ("no pasaste bro");
+         }
+ 
+    return 0;
+}
+
+ 
+5 calificaciones pero con if
+ 
+else
+ 
+ 
