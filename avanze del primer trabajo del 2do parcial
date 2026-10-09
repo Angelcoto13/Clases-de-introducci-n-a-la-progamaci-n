@@ -1,0 +1,63 @@
+#include <stdio.h>
+
+void mostrarMenu();
+void activarAvenida( int NumeroCarros);
+void activarSecundaria();
+void consultarEstado();
+void mostrarReporte();
+
+int main()
+{
+ int CarrosAvanzanAvenidaPrincipal;
+ int CarrosAvanzanCalleSecundaria;
+ int CarrosEsperanAvenidaPrincipal;
+ int CarrosEsperanCalleSecundaria;
+ int CarrosAvenidaPrincipal = 4;
+ int CarrosCalleSecundaria = 7;
+ int menu = 1;
+ do{
+        printf ("Selecciona tu opcion: \n");
+        printf ("1.- Activar avenida principal \n");
+        printf ("2.- Activar calle secundaria \n");
+        printf ("3.- Consultar estado del tráficon \n");
+        printf ("4.- Avanzar al siguiente ciclo \n");
+         printf ("5.- Finalizar simulación \n");
+          
+          scanf("%d", &menu);
+          
+           switch (menu){
+              
+        case 1:
+       
+       printf ("Avenida principal activada \n");
+        
+        break;
+          
+           case 2:
+            
+            printf ("Calle secundaria activada \n");    
+           
+                break;
+                
+                 case 3:
+            
+            printf ("Este es el estado del trafico \n");    
+           
+                break;
+                
+                case 4:
+            
+            printf ("Este es el estado del trafico \n");    
+           
+                break;
+                
+                case 5:
+            
+            printf ("Este es el estado del trafico \n");    
+           
+                break;
+           }
+  
+    } while (menu != 5);
+    return 0;
+}
