@@ -1,0 +1,23 @@
+int cantidadMaterias;
+    float calificacion, promedio;
+ 
+    printf("Ingrese la cantidad de materias: ");
+    scanf("%d", &cantidadMaterias);
+ 
+ 
+    for(int i = 0; i < cantidadMaterias; i++){
+        printf("Ingrese la calificación %d: ", i + 1);
+        scanf("%f", &calificacion);
+        promedio += calificacion;
+        
+    }
+ 
+    promedio /= cantidadMaterias;
+    printf("El promedio es: %.2f \n", promedio);
+ 
+    if(promedio >= 7){
+        printf("Felicidades, pasaste con un promedio de %.2f \n", promedio);
+ 
+    }
+ 
+ 
