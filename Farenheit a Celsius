@@ -1,0 +1,32 @@
+int main()
+
+{
+
+      float TemperaturaFarenheit, GradosCelsius;
+
+    printf("Ingresa TemperaturaFarenheit \n");
+
+    scanf("%f", &TemperaturaFarenheit);
+
+    GradosCelsius = (TemperaturaFarenheit - 32) / 1.8;
+
+    printf("tus grados celsius son: %.2f",GradosCelsius);
+
+
+    if (GradosCelsius > 31){
+
+    printf (" se pasa de los 31 grados celsius ");
+
+    }
+
+    else{
+
+    printf(" No se pasa los 31 grados celsius ");
+
+    }
+
+    return 0;
+
+}
+
+ 
