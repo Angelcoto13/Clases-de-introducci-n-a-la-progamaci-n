@@ -1,0 +1,14 @@
+#include <stdio.h>
+ 
+int main() {
+    float lado, area;
+ 
+    printf("Ingresa el lado del cubo: ");
+    scanf("%f", &lado);
+ 
+    area = 6 * lado * lado;
+ 
+    printf("El area total del cubo es: %.2f\n", area);
+ 
+    return 0;
+}
