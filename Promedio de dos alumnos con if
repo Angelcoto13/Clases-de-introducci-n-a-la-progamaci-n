@@ -1,0 +1,56 @@
+int main()
+
+{
+
+    float calificacion1, calificacion2, calificacion3, calificacion4, calificacion5, calificacion6;
+
+    float promedioAlumno1, promedioAlumno2;
+
+      printf ("ingresar calificacion1 \n");
+
+      scanf ("%f", &calificacion1);
+
+      printf ("ingresar calificacion2 \n");
+
+      scanf ("%f", &calificacion2);
+
+      printf ("ingresar calificacion3 \n");
+
+      scanf ("%f", &calificacion3);
+
+      printf ("ingresar calificacion4 \n");
+
+      scanf ("%f", &calificacion4);
+
+      printf ("ingresar calificacion5 \n");
+
+      scanf ("%f", &calificacion5);
+
+      printf ("ingresar calificacion6 \n");
+
+      scanf ("%f", &calificacion6);
+
+      promedioAlumno1 = (calificacion1 + calificacion2 + calificacion3) / 3;
+
+      printf (" promedio del alumno1 es: %2.f ", promedioAlumno1);
+
+      promedioAlumno2= (calificacion4 + calificacion5 + calificacion6) / 3;
+
+      printf (" promedio del alumno2 es: %2.f ", promedioAlumno2);
+
+    if (promedioAlumno1 > promedioAlumno2){
+
+    printf ("El promedio del alumno 1 es mas alto");
+
+    }
+
+    else{
+
+    printf ("El promedio del alumno 2 es mas alto");
+
+    }
+
+    return 0;
+
+}
+ 
