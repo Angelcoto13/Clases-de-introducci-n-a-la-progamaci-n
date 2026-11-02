@@ -1,0 +1,118 @@
+#include <stdio.h>
+ 
+int main() {
+
+int tesoros[10];
+
+int i;
+
+int max, min, suma = 0;
+
+int numeroBuscar;
+
+int encontrado = 0;
+ 
+    
+
+printf("Ingresa las 10 posiciones de los tesoros:\n");
+
+    for (i = 0; i < 10; i++) {
+
+         printf("Posición %d: ", i + 1);
+
+          scanf("%d", &tesoros[i]);
+
+    }
+ 
+   
+
+printf("Secuencia ingresada \n");
+
+    for (i = 0; i < 10; i++) {
+
+        printf("%d ", tesoros[i]);
+
+    }
+
+    printf("\n");
+ 
+ 
+max = tesoros[0];
+
+min = tesoros[0];
+
+    for (i = 1; i < 10; i++) {
+
+        if (tesoros[i] > max) {
+
+            max = tesoros[i];
+
+        }
+
+        if (tesoros[i] < min) {
+
+            min = tesoros[i];
+
+        }
+
+    }
+
+printf("\n Tesoro más grande (máximo): %d", max);
+
+printf("\n Tesoro más pequeño (mínimo): %d\n", min);
+ 
+   
+
+    for (i = 0; i < 10; i++) {
+
+        suma += tesoros[i];
+
+    }
+
+    printf("\n Suma total de las posiciones: %d\n", suma);
+ 
+   
+
+printf("\nIngresa un número para buscar en el mapa: ");
+
+    scanf("%d", &numeroBuscar);
+ 
+    
+
+    printf("Resultados de la búsqueda:\n");
+
+     for (i = 0; i < 10; i++) {
+
+        if (tesoros[i] == numeroBuscar) {
+
+            printf("- Encontrado en el índice/posición: %d\n", i);
+
+            encontrado = 1;
+
+        }
+
+     }
+
+    if (!encontrado) {
+
+        printf("El número %d no se encontró en el arreglo.\n", numeroBuscar);
+
+    }
+ 
+    
+
+    printf("En orden inverso: \n");
+
+    for (i = 9; i >= 0; i--) {
+
+        printf("%d ", tesoros[i]);
+
+    }
+
+    printf("\n");
+ 
+    return 0;
+
+}
+
+ 
