@@ -1,0 +1,300 @@
+#include <stdio.h>
+
+#include <stdlib.h>
+
+int SIZE = 5;
+
+int TOTAL_BARCOS = 3;
+
+ 
+void inicializarTablero(char tablero[SIZE][SIZE]){
+
+for(int i = 0; i < SIZE; i++){
+
+for(int j = 0; j < SIZE; j++) {
+
+tablero[i][j] = '~';
+
+}
+
+}
+
+}
+
+ 
+void mostrarTablero(char tablero[SIZE][SIZE]){
+
+printf(" ");
+
+for(int j = 0; j < SIZE; j++){
+
+printf("%d ", j);
+
+}
+
+printf("\n");
+
+for(int i = 0; i < SIZE; i++){
+
+printf("%d ", i);
+
+for(int j = 0; j < SIZE; j++) {
+
+printf("%c ", tablero[i][j]);
+
+}
+
+printf("\n");
+
+}
+
+printf("\n");
+
+}
+
+int main(){
+
+char tableroP1[SIZE][SIZE];
+
+char tableroP2[SIZE][SIZE];
+
+char tirosP1[SIZE][SIZE];
+
+char tirosP2[SIZE][SIZE];
+
+ 
+inicializarTablero(tableroP1);
+
+inicializarTablero(tableroP2);
+
+inicializarTablero(tirosP1);
+
+inicializarTablero(tirosP2);
+
+mostrarTablero(tableroP1);
+
+mostrarTablero(tableroP2);
+
+int barcosRestantesP1 = TOTAL_BARCOS;
+
+int barcosRestantesP2 = TOTAL_BARCOS;
+ 
+printf(" === JUGADOR 1: Coloca tus %d barcos === \n", TOTAL_BARCOS);
+
+for(int i = 0; i < TOTAL_BARCOS; i++){
+
+int r, c;
+
+printf("Posicion del barco %d (Fila, Columna): ", i + 1);
+
+scanf("%d, %d", &r, &c);
+
+if(r >= 0 && r < SIZE && c >= 0 && c < SIZE && tableroP1[r][c] == '~'){
+
+tableroP1[r][c] = '0';
+
+}
+
+else {
+
+printf("Coordenadas invalida o ya ocupada, intenta de nuevo. \n");
+
+i--; //esto decrementa i para repetir la colocación del barco, osea, no gasta un total
+
+}
+
+}
+
+ 
+printf("\n\n === JUGADOR 2: Coloca tus %d barcos === \n", TOTAL_BARCOS);
+
+for(int i = 0; i < TOTAL_BARCOS; i++){
+
+int r, c;
+
+printf("Posicion del barco %d (Fila, Columna): ", i + 1);
+
+scanf("%d, %d", &r, &c);
+
+if(r >= 0 && r < SIZE && c >= 0 && c < SIZE && tableroP2[r][c] == '~'){
+
+tableroP2[r][c] = '0';
+
+}
+
+else {
+
+printf("Coordenadas invalida o ya ocupada, intenta de nuevo. \n");
+
+i--; //esto decrementa i para repetir la colocación del barco, osea, no gasta
+
+}
+
+}
+
+ 
+for(int i = 0; i < 30; i++) printf("\n");
+
+ 
+
+
+int juegoTerminado = 0;
+
+while (!juegoTerminado) {
+
+int r, c;
+
+// TURNO JUGADOR 1
+
+printf("=========================================\n");
+
+printf(" TURNO DE JUGADOR 1 \n");
+
+printf("=========================================\n");
+
+printf("Tu registro de tiros:\n");
+
+mostrarTablero(tirosP1);
+
+printf("Ingresa coordenadas a atacar (Fila, Columna): ");
+
+scanf("%d, %d", &r, &c);
+
+if (r >= 0 && r < SIZE && c >= 0 && c < SIZE) {
+
+if (tirosP1[r][c] != '~') {
+
+printf("Ya habias disparado a estas coordenadas. Pierdes el turno.\n");
+
+} else {
+
+// Verificar si le atina al tablero del Jugador 2
+
+if (tableroP2[r][c] == '0') {
+
+printf("¡IMPACTO! Le diste a un barco enemigo.\n");
+
+tirosP1[r][c] = 'X'; // 'X' para impacto en tablero
+
+tableroP2[r][c] = 'X';
+
+barcosRestantesP2--;
+
+} else {
+
+printf("¡AGUA! Fallaste el tiro.\n");
+
+tirosP1[r][c] = 'O'; // 'O' para agua en tablero
+
+}
+
+}
+
+} else {
+
+printf("Coordenadas fuera de rango. Pierdes el turno.\n");
+
+}
+
+ 
+if (barcosRestantesP2 == 0) {
+
+printf("\n¡Felicidades Jugador 1! Destruiste todos los barcos enemigos. ¡Tú ganas! \n");
+
+juegoTerminado = 1;
+
+break;
+
+}
+
+ 
+printf("\nPresiona Enter para pasar al turno del Jugador 2...");
+
+while (getchar() != '\n');
+
+getchar();
+
+for(int i = 0; i < 30; i++) printf("\n");
+
+
+// ------------------------------------------
+
+// TURNO JUGADOR 2
+
+// ------------------------------------------
+
+printf("=========================================\n");
+
+printf(" TURNO DE JUGADOR 2 \n");
+
+printf("=========================================\n");
+
+printf("Tu registro de tiros:\n");
+
+mostrarTablero(tirosP2);
+
+printf("Ingresa coordenadas a atacar (Fila, Columna): ");
+
+scanf("%d, %d", &r, &c);
+
+if (r >= 0 && r < SIZE && c >= 0 && c < SIZE) {
+
+if (tirosP2[r][c] != '~') {
+
+printf("Ya habias disparado a estas coordenadas. Pierdes el turno.\n");
+
+} else {
+ 
+ 
+if (tableroP1[r][c] == '0') {
+
+printf("¡IMPACTO! Le diste a un barco enemigo.\n");
+
+tirosP2[r][c] = 'X';
+
+tableroP1[r][c] = 'X';
+
+barcosRestantesP1--;
+
+} else {
+
+printf("¡AGUA! Fallaste el tiro.\n");
+
+tirosP2[r][c] = 'O';
+
+}
+
+}
+
+} else {
+
+printf("Coordenadas fuera de rango. Pierdes el turno.\n");
+
+}
+
+ 
+if (barcosRestantesP1 == 0) {
+
+printf("\n¡Felicidades Jugador 2! Destruiste todos los barcos enemigos. ¡Tú ganas! \n");
+
+juegoTerminado = 1;
+
+break;
+
+}
+
+ 
+printf("\nPresiona Enter para pasar al turno del Jugador 1...");
+
+while (getchar() != '\n');
+
+getchar();
+
+for(int i = 0; i < 30; i++) printf("\n");
+
+}
+
+return 0;
+
+}
+ 
