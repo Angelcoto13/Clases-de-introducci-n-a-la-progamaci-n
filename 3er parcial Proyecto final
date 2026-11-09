@@ -1,0 +1,222 @@
+#include <stdio.h>
+#include <stdlib.h>
+ 
+#define SIZE 3
+#define TOTAL_CULTIVOS 3
+ 
+void inicializarGranja(char matriz[SIZE][SIZE]){
+    for(int i = 0; i < SIZE; i++){
+        for(int j = 0; j < SIZE; j++) {
+            matriz[i][j] = '~'; 
+        }
+    }
+}
+ 
+// MEJORA VISUAL PARA TU EXPOSICIÓN: Muestra las regadas acumuladas y las necesarias
+void mostrarGranjaDetallada(char granja[SIZE][SIZE], int diasActuales[SIZE][SIZE], char regado[SIZE][SIZE], int tiempoCrecimiento[]){
+    printf("     0               1               2       \n");
+    for(int i = 0; i < SIZE; i++){
+        printf("%d  ", i);
+        for(int j = 0; j < SIZE; j++) {
+            if (granja[i][j] == '~') {
+                printf("[  Vacío  ]     ");
+            } else {
+                char tipo = granja[i][j];
+                int id = -1;
+                if (tipo == 'T') id = 0;
+                if (tipo == 'M') id = 1;
+                if (tipo == 'Z') id = 2;
+                
+                // Indicamos si ya se regó hoy con un símbolo '+' o si está seca con ' '
+                char estadoRiego = (regado[i][j] == 'W') ? '+' : ' ';
+                
+                // Imprime: Cultivo(RegadasActuales/RegadasNecesarias) y si ya se regó hoy
+                printf("[ %c (%d/%d)%c ]    ", tipo, diasActuales[i][j], tiempoCrecimiento[id], estadoRiego);
+            }
+        }
+        printf("\n");
+    }
+    printf("\n* Nota: (+) significa que ya fue regado hoy. Las plantas solo crecen si se riegan.\n\n");
+}
+ 
+int main(){
+    char granja[SIZE][SIZE];       
+    char regado[SIZE][SIZE];       
+    
+    inicializarGranja(granja);
+    inicializarGranja(regado);
+ 
+    char nombres[TOTAL_CULTIVOS] = {'T', 'M', 'Z'};
+    int costos[TOTAL_CULTIVOS] = {10, 20, 15};
+    int precios[TOTAL_CULTIVOS] = {30, 55, 40};
+    int tiempoCrecimiento[TOTAL_CULTIVOS] = {2, 3, 2}; 
+ 
+    int diasActuales[SIZE][SIZE];
+    for(int i=0; i<SIZE; i++) {
+        for(int j=0; j<SIZE; j++) diasActuales[i][j] = 0;
+    }
+ 
+    int dinero = 100;
+    int agua = 10;
+    int semillasTomate = 2;
+    int semillasMaiz = 2;
+    int semillasZanahoria = 2;
+    int diaActual = 1;
+ 
+    int juegoTerminado = 0;
+ 
+    while (!juegoTerminado) {
+        int opcion;
+        printf("====================================================================\n");
+        printf(" SIMULADOR DE GRANJA - DÍA %d \n", diaActual);
+        printf("====================================================================\n");
+        printf("Dinero: $%d  |  Agua: %d unidades\n", dinero, agua);
+        printf("Semillas disponibles -> Tomate (0): %d | Maíz (1): %d | Zanahoria (2): %d\n", semillasTomate, semillasMaiz, semillasZanahoria);
+        printf("--------------------------------------------------------------------\n");
+        printf("ESTADO DE LA GRANJA:\n");
+        
+        // Llamamos a la nueva función pasando los arreglos necesarios
+        mostrarGranjaDetallada(granja, diasActuales, regado, tiempoCrecimiento);
+        
+        printf("Menú de opciones:\n");
+        printf("1. Sembrar cultivo\n");
+        printf("2. Regar terreno\n");
+        printf("3. Cosechar y vender\n");
+        printf("4. Avanzar al siguiente día\n");
+        printf("5. Salir de la granja\n");
+        printf("Selecciona una opción: ");
+        scanf("%d", &opcion);
+ 
+        int r, c; 
+ 
+        if (opcion == 1) {
+            printf("Ingresa coordenadas para sembrar (Fila Columna): ");
+            scanf("%d %d", &r, &c);
+ 
+            if (r >= 0 && r < SIZE && c >= 0 && c < SIZE) {
+                if (granja[r][c] != '~') {
+                    printf("¡Este terreno ya está ocupado!\n");
+                } else {
+                    int tipo;
+                    printf("¿Qué deseas sembrar? (0: Tomate, 1: Maíz, 2: Zanahoria): ");
+                    scanf("%d", &tipo);
+ 
+                    if (tipo == 0 && semillasTomate > 0) {
+                        granja[r][c] = 'T';
+                        semillasTomate--;
+                        diasActuales[r][c] = 0;
+                        printf("¡Tomate sembrado con éxito!\n");
+                    } else if (tipo == 1 && semillasMaiz > 0) {
+                        granja[r][c] = 'M';
+                        semillasMaiz--;
+                        diasActuales[r][c] = 0;
+                        printf("¡Maíz sembrado con éxito!\n");
+                    } else if (tipo == 2 && semillasZanahoria > 0) {
+                        granja[r][c] = 'Z';
+                        semillasZanahoria--;
+                        diasActuales[r][c] = 0;
+                        printf("¡Zanahoria sembrada con éxito!\n");
+                    } else {
+                        printf("Opción inválida o no tienes semillas de ese tipo.\n");
+                    }
+                }
+            } else {
+                printf("Coordenadas fuera de rango.\n");
+            }
+        } 
+        else if (opcion == 2) {
+            printf("Ingresa coordenadas a regar (Fila Columna): ");
+            scanf("%d %d", &r, &c);
+ 
+            if (r >= 0 && r < SIZE && c >= 0 && c < SIZE) {
+                if (granja[r][c] == '~') {
+                    printf("No hay nada sembrado aquí para regar.\n");
+                } else if (regado[r][c] == 'W') {
+                    printf("Este terreno ya fue regado el día de hoy.\n");
+                } else if (agua <= 0) {
+                    printf("No tienes suficiente agua disponible.\n");
+                } else {
+                    regado[r][c] = 'W'; 
+                    agua--;
+                    printf("¡Terreno regado exitosamente!\n");
+                    
+                    // Al regar, le mostramos un mensaje interactivo con las regadas actuales del cultivo
+                    char tipo = granja[r][c];
+                    int id = (tipo == 'T') ? 0 : (tipo == 'M') ? 1 : 2;
+                    printf("Estado actual del cultivo en (%d,%d): %d de %d regadas completadas.\n", 
+                           r, c, diasActuales[r][c], tiempoCrecimiento[id]);
+                }
+            } else {
+                printf("Coordenadas fuera de rango.\n");
+            }
+        } 
+        else if (opcion == 3) {
+            printf("Ingresa coordenadas a cosechar (Fila Columna): ");
+            scanf("%d %d", &r, &c);
+ 
+            if (r >= 0 && r < SIZE && c >= 0 && c < SIZE) {
+                char cultivo = granja[r][c];
+                if (cultivo == '~') {
+                    printf("No hay nada que cosechar aquí.\n");
+                } else {
+                    int id_cultivo = -1;
+                    if (cultivo == 'T') id_cultivo = 0;
+                    if (cultivo == 'M') id_cultivo = 1;
+                    if (cultivo == 'Z') id_cultivo = 2;
+ 
+                    if (diasActuales[r][c] < tiempoCrecimiento[id_cultivo]) {
+                        printf("¡ACCIÓN INVALIDA! El cultivo aún no está listo. Requiere %d regadas y lleva %d.\n", 
+                               tiempoCrecimiento[id_cultivo], diasActuales[r][c]);
+                    } else {
+                        int ganancia = precios[id_cultivo];
+                        int costoBase = costos[id_cultivo];
+                        int rendimiento = ganancia - costoBase;
+ 
+                        dinero += ganancia;
+                        printf("¡Cosecha exitosa! Vendiste el cultivo por $%d (Rendimiento Neto: +$%d)\n", ganancia, rendimiento);
+                        
+                        granja[r][c] = '~';
+                        regado[r][c] = '~';
+                        diasActuales[r][c] = 0;
+                    }
+                }
+            } else {
+                printf("Coordenadas fuera de rango.\n");
+            }
+        } 
+        else if (opcion == 4) {
+            diaActual++;
+            printf("\n--- Avanzando al siguiente día... Las plantas crecen si recibieron agua ---\n");
+ 
+            for(int i = 0; i < SIZE; i++){
+                for(int j = 0; j < SIZE; j++) {
+                    if (granja[i][j] != '~') {
+                        if (regado[i][j] == 'W') {
+                            diasActuales[i][j]++;
+                        } else {
+                            printf("Aviso: El cultivo en (%d, %d) no creció por falta de riego.\n", i, j);
+                        }
+                    }
+                    regado[i][j] = '~';
+                }
+            }
+            agua += 3; 
+        } 
+        else if (opcion == 5) {
+            printf("¡Gracias por jugar al simulador de granja!\n");
+            juegoTerminado = 1;
+            break;
+        } 
+        else {
+            printf("Opción inválida.\n");
+        }
+ 
+        printf("\nPresiona Enter para continuar...");
+        while (getchar() != '\n');
+        getchar();
+        
+        for(int i = 0; i < 30; i++) printf("\n");
+    }
+ 
+    return 0;
+}
