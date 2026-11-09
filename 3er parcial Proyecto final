@@ -2,7 +2,7 @@
 #include <stdlib.h>
  
 #define SIZE 3
-#define TOTAL_CULTIVOS 3
+#define TotalCultivos 3
  
 void inicializarGranja(char matriz[SIZE][SIZE]){
     for(int i = 0; i < SIZE; i++){
@@ -12,7 +12,7 @@ void inicializarGranja(char matriz[SIZE][SIZE]){
     }
 }
  
-// MEJORA VISUAL PARA TU EXPOSICIÓN: Muestra las regadas acumuladas y las necesarias
+
 void mostrarGranjaDetallada(char granja[SIZE][SIZE], int diasActuales[SIZE][SIZE], char regado[SIZE][SIZE], int tiempoCrecimiento[]){
     printf("     0               1               2       \n");
     for(int i = 0; i < SIZE; i++){
@@ -27,10 +27,10 @@ void mostrarGranjaDetallada(char granja[SIZE][SIZE], int diasActuales[SIZE][SIZE
                 if (tipo == 'M') id = 1;
                 if (tipo == 'Z') id = 2;
                 
-                // Indicamos si ya se regó hoy con un símbolo '+' o si está seca con ' '
+                
                 char estadoRiego = (regado[i][j] == 'W') ? '+' : ' ';
                 
-                // Imprime: Cultivo(RegadasActuales/RegadasNecesarias) y si ya se regó hoy
+               
                 printf("[ %c (%d/%d)%c ]    ", tipo, diasActuales[i][j], tiempoCrecimiento[id], estadoRiego);
             }
         }
@@ -40,57 +40,56 @@ void mostrarGranjaDetallada(char granja[SIZE][SIZE], int diasActuales[SIZE][SIZE
 }
  
 int main(){
-    char granja[SIZE][SIZE];       
-    char regado[SIZE][SIZE];       
+char granja[SIZE][SIZE];       
+char regado[SIZE][SIZE];       
     
-    inicializarGranja(granja);
-    inicializarGranja(regado);
+inicializarGranja(granja);
+inicializarGranja(regado);
  
-    char nombres[TOTAL_CULTIVOS] = {'T', 'M', 'Z'};
-    int costos[TOTAL_CULTIVOS] = {10, 20, 15};
-    int precios[TOTAL_CULTIVOS] = {30, 55, 40};
-    int tiempoCrecimiento[TOTAL_CULTIVOS] = {2, 3, 2}; 
+char nombres[TotalCultivos] = {'T', 'M', 'Z'};
+int costos[TotalCultivos] = {10, 20, 15};
+int precios[TotalCultivos] = {30, 55, 40};
+int tiempoCrecimiento[TotalCultivos] = {2, 3, 2}; 
  
-    int diasActuales[SIZE][SIZE];
+int diasActuales[SIZE][SIZE];
     for(int i=0; i<SIZE; i++) {
         for(int j=0; j<SIZE; j++) diasActuales[i][j] = 0;
     }
  
-    int dinero = 100;
-    int agua = 10;
-    int semillasTomate = 2;
-    int semillasMaiz = 2;
-    int semillasZanahoria = 2;
-    int diaActual = 1;
+int dinero = 100;
+int agua = 10;
+int semillasTomate = 2;
+int semillasMaiz = 2;
+int semillasZanahoria = 2;
+int diaActual = 1;
  
-    int juegoTerminado = 0;
+int juegoTerminado = 0;
  
-    while (!juegoTerminado) {
+   while (!juegoTerminado) {
         int opcion;
-        printf("====================================================================\n");
-        printf(" SIMULADOR DE GRANJA - DÍA %d \n", diaActual);
-        printf("====================================================================\n");
-        printf("Dinero: $%d  |  Agua: %d unidades\n", dinero, agua);
-        printf("Semillas disponibles -> Tomate (0): %d | Maíz (1): %d | Zanahoria (2): %d\n", semillasTomate, semillasMaiz, semillasZanahoria);
-        printf("--------------------------------------------------------------------\n");
-        printf("ESTADO DE LA GRANJA:\n");
+ printf(".....................................................................\n");
+    printf(" SIMULADOR DE GRANJA - DÍA %d \n", diaActual);
+      printf(".....................................................................\n");
+    printf("Dinero: $%d  |  Agua: %d unidades\n", dinero, agua);
+    printf("Semillas disponibles -> Tomate (0): %d | Maíz (1): %d | Zanahoria (2): %d\n", semillasTomate, semillasMaiz, semillasZanahoria);
+    printf("--------------------------------------------------------------------\n");
+         printf("ESTADO DE LA GRANJA:\n");
         
-        // Llamamos a la nueva función pasando los arreglos necesarios
+       
         mostrarGranjaDetallada(granja, diasActuales, regado, tiempoCrecimiento);
         
-        printf("Menú de opciones:\n");
-        printf("1. Sembrar cultivo\n");
-        printf("2. Regar terreno\n");
-        printf("3. Cosechar y vender\n");
-        printf("4. Avanzar al siguiente día\n");
-        printf("5. Salir de la granja\n");
-        printf("Selecciona una opción: ");
-        scanf("%d", &opcion);
+printf("Menú de opciones:\n");
+printf("1. Sembrar cultivo\n");
+printf("2. Regar terreno\n");
+printf("3. Cosechar y vender\n");
+printf("4. Avanzar al siguiente día\n");
+printf("5. Salir de la granja\n");
+printf("Selecciona una opción: ");
+    scanf("%d", &opcion);
+ int r, c; 
  
-        int r, c; 
- 
-        if (opcion == 1) {
-            printf("Ingresa coordenadas para sembrar (Fila Columna): ");
+    if (opcion == 1) {
+    printf("Ingresa coordenadas para sembrar (Fila Columna): ");
             scanf("%d %d", &r, &c);
  
             if (r >= 0 && r < SIZE && c >= 0 && c < SIZE) {
@@ -140,7 +139,7 @@ int main(){
                     agua--;
                     printf("¡Terreno regado exitosamente!\n");
                     
-                    // Al regar, le mostramos un mensaje interactivo con las regadas actuales del cultivo
+                    
                     char tipo = granja[r][c];
                     int id = (tipo == 'T') ? 0 : (tipo == 'M') ? 1 : 2;
                     printf("Estado actual del cultivo en (%d,%d): %d de %d regadas completadas.\n", 
@@ -220,3 +219,4 @@ int main(){
  
     return 0;
 }
+
