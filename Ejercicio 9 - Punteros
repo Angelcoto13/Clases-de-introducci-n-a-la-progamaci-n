@@ -1,0 +1,21 @@
+#include <stdio.h>
+ 
+int principal()
+{
+    int edad = 17;
+    int edad2 = 20;
+    int *punteroEdad = &edad; //declaracion de un puntero que apunta a la variable edad
+    printf("valor de edad antes de modificar: %d\n", edad);
+     printf("valor de edad antes de modificar: %d\n", edad2);
+    printf("direccion de memoria de la variable edad: %p\n", &edad);
+    printf ("direccion de memoria almacenada en el puntero: %p\n", punteroEdad);
+    //modificar el valor de edad a través del punteroEdad
+    *punteroEdad = 18; //desreferenciando el puntero para modificar
+    printf ("valor de edad después de modificar: %d\n", edad);
+    punteroEdad = &edad2;
+    *punteroEdad = 21;
+    printf ("valor despues de modificar: %d\n", edad2);
+
+ 
+    devolver 0;
+}
